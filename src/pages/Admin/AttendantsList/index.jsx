@@ -1,5 +1,5 @@
-import Header from "../../components/Header";
-import ListDetail from "../../components/ListDetail";
+import Header from "../../../components/Header";
+import ListDetail from "../../../components/ListDetail";
 import * as S from "./styles";
 
 const attendants = [
