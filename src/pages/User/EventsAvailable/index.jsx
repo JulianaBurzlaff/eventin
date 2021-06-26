@@ -2,7 +2,6 @@ import Header from "../../../components/Header";
 import EventCard from "../../../components/EventCard";
 
 import { Container } from "./styles";
-
 // Change EventCard to EventList Component
 
 function EventsList() {

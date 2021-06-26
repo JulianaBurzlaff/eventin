@@ -7,9 +7,8 @@ import EventsList from "../pages/Admin/EventsList";
 import AttendantsList from "../pages/Admin/AttendantsList";
 import UserRegistration from "../pages/Admin/UserRegistration";
 
-import UserEvents from "../pages/User/Event";
-// import EventsList from "../pages/Admin/EventsList";
-// import AttendantsList from "../pages/Admin/AttendantsList";
+import EventsAvailable from "../pages/User/EventsAvailable";
+import EventDetail from "../pages/User/EventDetail";
 // import UserRegistration from "../pages/Admin/UserRegistration";
 
 export default function Router() {
@@ -23,7 +22,9 @@ export default function Router() {
         <Route path="/admin/attendants" component={AttendantsList} />
         <Route path="/admin/usersregister" component={UserRegistration} />
 
-        <Route path="/user/events" component={UserEvents} />
+        <Route path="/user/events-available" component={EventsAvailable} />
+        <Route path="/user/event-detail" component={EventDetail} />
+
 
       </Switch>
     </BrowserRouter>
