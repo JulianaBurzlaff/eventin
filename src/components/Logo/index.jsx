@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 
 function Logo({ height = 53, width = 83 }) {
-  return <img src={logo} alt="Eventin logo" height={height} width={width} />;
+  return <img src={logo} alt="Eventin logo" height={height} width={width}  />;
 }
 
 export default Logo;
