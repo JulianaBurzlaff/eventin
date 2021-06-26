@@ -4,7 +4,7 @@ export const ButtonComponent = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 13px 116px;
+  /* padding: 13px 116px; */
   margin-top: 20px;
   background: #835afd;
   border-radius: 8px;
@@ -23,5 +23,8 @@ export const ButtonComponent = styled.button`
 
   &:hover {
     filter: brightness(0.9);
+  }
+  &:disabled{
+    background: #C4C4C4;
   }
 `;

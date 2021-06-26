@@ -7,6 +7,11 @@ import EventsList from "../pages/Admin/EventsList";
 import AttendantsList from "../pages/Admin/AttendantsList";
 import UserRegistration from "../pages/Admin/UserRegistration";
 
+import UserEvents from "../pages/User/Event";
+// import EventsList from "../pages/Admin/EventsList";
+// import AttendantsList from "../pages/Admin/AttendantsList";
+// import UserRegistration from "../pages/Admin/UserRegistration";
+
 export default function Router() {
   return (
     <BrowserRouter>
@@ -17,6 +22,9 @@ export default function Router() {
         <Route path="/admin/events" component={EventsList} />
         <Route path="/admin/attendants" component={AttendantsList} />
         <Route path="/admin/usersregister" component={UserRegistration} />
+
+        <Route path="/user/events" component={UserEvents} />
+
       </Switch>
     </BrowserRouter>
   );

@@ -54,4 +54,9 @@ export const ContainerRight = styled.div`
   input {
     margin-top: 20px;
   }
+
+  button{
+    width: 320px;
+    height: 50px;
+  }
 `;

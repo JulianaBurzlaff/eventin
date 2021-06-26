@@ -8,6 +8,7 @@ export default function Button({
   height,
   children,
   onClick,
+  disabled,
 }) {
   return (
     <ButtonComponent
@@ -15,6 +16,8 @@ export default function Button({
       onClick={onClick}
       height={height}
       width={width}
+
+      disabled = {disabled}
     >
       {children}
     </ButtonComponent>
