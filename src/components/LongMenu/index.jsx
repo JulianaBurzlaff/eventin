@@ -21,9 +21,28 @@ const optionsUsers = [
   },
 ];
 
+const optionsAdmin = [
+  {
+    label: "Events",
+    value: "/admin/events",
+  },
+  {
+    label: "Users",
+    value: "/admin/users",
+  },
+  {
+    label: "Attendants",
+    value: "/admin/attendants",
+  },
+  {
+    label: "Logout",
+    value: "/home",
+  },
+];
+
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu() {
+export default function LongMenu({ option = "user" }) {
   const { logout } = useUsers();
   const history = useHistory();
   const [selectedOption, setSelectedOption] = React.useState();
@@ -49,6 +68,8 @@ export default function LongMenu() {
     setAnchorEl(null);
   };
 
+  const options = option === "user" ? optionsUsers : optionsAdmin;
+
   return (
     <div>
       <IconButton
@@ -72,7 +93,7 @@ export default function LongMenu() {
           },
         }}
       >
-        {optionsUsers.map(({ label, value }) => (
+        {options.map(({ label, value }) => (
           <MenuItem
             key={value}
             selected={value === selectedOption}

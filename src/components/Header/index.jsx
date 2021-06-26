@@ -5,7 +5,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import * as S from "./styles";
 
-function Header() {
+function Header({ type = "user" }) {
   return (
     <S.Header>
       <S.Container>
@@ -21,7 +21,7 @@ function Header() {
           />
         </S.Search>
       </S.Container>
-      <LongMenu />
+      <LongMenu option={type} />
     </S.Header>
   );
 }

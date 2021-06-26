@@ -1,8 +1,7 @@
 import Header from "../../components/Header";
-import * as S from "./styles";
 
-function UserList() {
+function EventsList() {
   return <Header type="admin" />;
 }
 
-export default UserList;
+export default EventsList;
