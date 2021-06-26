@@ -13,6 +13,7 @@ export const ContainerLeft = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   div {
     margin-bottom: 115px;
   }
@@ -39,6 +40,7 @@ export const ContainerRight = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   h2 {
     font-family: "Roboto";
     font-style: normal;
