@@ -1,23 +1,23 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { useUsers } from '../../Hooks/useUsers';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { useUsers } from "../../Hooks/useUsers";
 
-const options = [
+const optionsUsers = [
   {
-    label: 'Meus pets',
-    value: '/list',
+    label: "Events",
+    value: "/events",
   },
   {
-    label: 'Agendamentos',
-    value: '/appointments',
+    label: "My events",
+    value: "/events/user",
   },
   {
-    label: 'Sair',
-    value: '/home',
+    label: "Logout",
+    value: "/home",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function LongMenu() {
   };
 
   const handleMenuItemClick = (event, url) => {
-    if (url === '/home') {
+    if (url === "/home") {
       logout();
     } else {
       history.push(url);
@@ -57,7 +57,7 @@ export default function LongMenu() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MoreVertIcon style={{ fill: '#E8F3F1' }} />
+        <MoreVertIcon style={{ fill: "#E8F3F1" }} />
       </IconButton>
       <Menu
         id="long-menu"
@@ -68,11 +68,11 @@ export default function LongMenu() {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            width: '20ch',
+            width: "20ch",
           },
         }}
       >
-        {options.map(({ label, value }) => (
+        {optionsUsers.map(({ label, value }) => (
           <MenuItem
             key={value}
             selected={value === selectedOption}
