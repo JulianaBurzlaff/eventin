@@ -9,7 +9,7 @@ export default createGlobalStyle`
     outline: none;
 }
 body{
-    background: #E5E5E5;
+    background: #F8F8F8;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: normal;

@@ -13,6 +13,9 @@ export const ContainerLeft = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  div {
+    margin-bottom: 115px;
+  }
   img {
     max-width: 35vw;
     margin: 0 0 20px 0;
@@ -37,13 +40,14 @@ export const ContainerRight = styled.div`
   align-items: center;
   justify-content: center;
   h2 {
-    font-family: Roboto;
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
-    font-size: 47px;
+    font-size: 43px;
     line-height: 32px;
     color: #363535;
     opacity: 0.7;
+    margin-bottom: 20px;
   }
   input {
     margin-top: 20px;
