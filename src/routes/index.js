@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "../pages/Home";
-import UserList from "../pages/UserList";
-import EventsList from "../pages/EventsList";
-import AttendantsList from "../pages/AttendantsList";
+import UserList from "../pages/Admin/UserList";
+import EventsList from "../pages/Admin/EventsList";
+import AttendantsList from "../pages/Admin/AttendantsList";
 
 export default function Router() {
   return (

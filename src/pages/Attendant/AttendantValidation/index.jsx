@@ -1,4 +1,4 @@
-import AttendantHeader from "../../components/AttendantHeader";
+import AttendantHeader from "../../../components/AttendantHeader";
 // import * as S from "./styles";
 
 function AttendantValidation() {
