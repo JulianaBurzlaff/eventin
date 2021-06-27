@@ -26,8 +26,8 @@ export default function EventCard(props) {
           </li>
         </ul>
       </EventInfor>
-      <Button>Details</Button>
-      <Button>Subscribe</Button>
+      <Button>{props.btn1}</Button>
+      <Button>{props.btn2}</Button>
     </Container>
   );
 }

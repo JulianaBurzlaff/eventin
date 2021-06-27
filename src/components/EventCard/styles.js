@@ -7,6 +7,7 @@ export const Container = styled.div`
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
 
+  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
