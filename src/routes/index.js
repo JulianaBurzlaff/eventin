@@ -6,6 +6,8 @@ import UserList from "../pages/Admin/UserList";
 import EventsList from "../pages/Admin/EventsList";
 import AttendantsList from "../pages/Admin/AttendantsList";
 import UserRegistration from "../pages/Admin/UserRegistration";
+import AttendantRegistration from "../pages/Admin/AttendantRegistration";
+import EventRegistration from "../pages/Admin/EventRegistration";
 import AttendantHome from "../pages/Attendant/AttendantHome";
 import AttendantValidation from "../pages/Attendant/AttendantValidation";
 import AttendantValidated from "../pages/Attendant/AttendantValidated";
@@ -23,9 +25,14 @@ export default function Router() {
         <Redirect exact to="/home" from="/" />
         <Route path="/home" component={Home} />
         <Route path="/admin/users" exact component={UserList} />
-        <Route path="/admin/events" component={EventsList} />
-        <Route path="/admin/attendants" component={AttendantsList} />
+        <Route path="/admin/events" exact component={EventsList} />
+        <Route path="/admin/attendants" exact component={AttendantsList} />
         <Route path="/admin/users/register" component={UserRegistration} />
+        <Route path="/admin/events/register" component={EventRegistration} />
+        <Route
+          path="/admin/attendants/register"
+          component={AttendantRegistration}
+        />
         <Route path="/attendant" exact component={AttendantHome} />
         <Route
           path="/attendant/validation"
@@ -38,7 +45,6 @@ export default function Router() {
           component={AttendantValidated}
         />
         <Route path="/attendant/refused" exact component={AttendantRefused} />
-        <Route path="/admin/usersregister" component={UserRegistration} />
 
         <Route path="/user/events-available" component={EventsAvailable} />
         <Route path="/user/event-detail" component={EventDetail} />
