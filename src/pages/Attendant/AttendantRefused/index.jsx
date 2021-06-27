@@ -1,8 +1,20 @@
 import AttendantHeader from "../../../components/AttendantHeader";
-// import * as S from "./styles";
+import ErrorIcon from "../../../assets/error.svg";
+import Button from "../../../components/Button";
+import * as S from "./styles";
 
-function AttendentRefused() {
-  return <AttendantHeader />;
+function AttendantValidated() {
+  return (
+    <S.Container>
+      <AttendantHeader />
+      <S.ErrorIcon src={ErrorIcon} />
+      <S.Phrase>
+        This QR Code is invalid or
+        <br /> has already been used.
+      </S.Phrase>
+      <Button>Try again</Button>
+    </S.Container>
+  );
 }
 
-export default AttendentRefused;
+export default AttendantValidated;

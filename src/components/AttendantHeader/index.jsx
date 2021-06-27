@@ -2,12 +2,12 @@ import React from "react";
 import Logo from "../Logo";
 import * as S from "./styles";
 
-function Header() {
+function AttendantHeader() {
   return (
     <S.Header>
-      <Logo height={237} width={387} />
+      <Logo height={50} width={250} />
     </S.Header>
   );
 }
 
-export default Header;
+export default AttendantHeader;

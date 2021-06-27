@@ -1,8 +1,21 @@
 import AttendantHeader from "../../../components/AttendantHeader";
-// import * as S from "./styles";
+import SuccessfulIcon from "../../../assets/successful.svg";
+import Button from "../../../components/Button";
+import * as S from "./styles";
 
 function AttendantValidated() {
-  return <AttendantHeader />;
+  return (
+    <S.Container>
+      <AttendantHeader />
+      <S.SuccessfulIcon src={SuccessfulIcon} />
+      <S.Phrase>
+        Successful validation!
+        <br />
+        Guest is allowed to enter.
+      </S.Phrase>
+      <Button>Close</Button>
+    </S.Container>
+  );
 }
 
 export default AttendantValidated;

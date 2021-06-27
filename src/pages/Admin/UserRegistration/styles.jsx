@@ -4,11 +4,11 @@ export const Title = styled.div`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 40px;
   line-height: 32px;
   color: #363535;
   opacity: 0.7;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 // export const Fullname = styled.div`
