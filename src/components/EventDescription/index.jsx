@@ -30,14 +30,14 @@ export default function EventDescription(props) {
           At Scrum Day Europe 2021, experienced practioners tell stories about
           their successes and failures, facilitate workshops and suggest better
           ways to maximize value for your business and customers. Join us online
-          and help maximize the value from our balanced and diverse program.
-          At Scrum Day Europe 2021, experienced practioners tell stories about
+          and help maximize the value from our balanced and diverse program. At
+          Scrum Day Europe 2021, experienced practioners tell stories about
           their successes and failures, facilitate workshops and suggest better
           ways to maximize value for your business and customers. Join us online
           and help maximize the value from our balanced and diverse program.
         </legend>
-        <Button>Details</Button>
-        <Button>Subscribe</Button>
+        <Button>{props.btn1}</Button>
+        <Button>{props.btn2}</Button>
       </EventInfor>
     </Container>
   );
