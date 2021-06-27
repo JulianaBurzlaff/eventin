@@ -2,12 +2,14 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "../pages/Home";
+
 import UserList from "../pages/Admin/UserList";
 import EventsList from "../pages/Admin/EventsList";
 import AttendantsList from "../pages/Admin/AttendantsList";
 import UserRegistration from "../pages/Admin/UserRegistration";
 import AttendantRegistration from "../pages/Admin/AttendantRegistration";
 import EventRegistration from "../pages/Admin/EventRegistration";
+
 import AttendantHome from "../pages/Attendant/AttendantHome";
 import AttendantValidation from "../pages/Attendant/AttendantValidation";
 import AttendantValidated from "../pages/Attendant/AttendantValidated";

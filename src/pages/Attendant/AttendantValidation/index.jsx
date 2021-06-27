@@ -31,7 +31,9 @@ function AttendantValidation() {
         <PersonIcon fontSize="large" />
         <h2>User Name</h2>
       </S.UserInfo>
-      <Button>Validate</Button>
+      <Button width="200px" height="50px">
+        Validate
+      </Button>
     </S.Container>
   );
 }

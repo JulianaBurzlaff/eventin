@@ -2,12 +2,18 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
 import Button from "../../../components/Button";
 import RegisterTemplate from "../../../components/RegisterTemplate";
 import * as S from "./styles";
 
 function UserRegistration() {
   const history = useHistory();
+
+  const onCancelClick = (event) => {
+    event.preventDefault();
+    history.push(`/admin/users`);
+  };
 
   const onSubmit = () => {
     history.push(`/admin/users`);
@@ -47,7 +53,14 @@ function UserRegistration() {
         </Grid>
 
         <Grid container item xs={12} justify="center">
-          <Button onClick={onSubmit}>Register new user</Button>
+          <Button width="300px" height="50px" onClick={onSubmit}>
+            Register new user
+          </Button>
+        </Grid>
+        <Grid container item xs={12} justify="center">
+          <Link href="/admin/users" onClick={onCancelClick}>
+            Cancel
+          </Link>
         </Grid>
       </Grid>
     </RegisterTemplate>

@@ -13,7 +13,9 @@ function AttendantValidated() {
         <br />
         Guest is allowed to enter.
       </S.Phrase>
-      <Button>Close</Button>
+      <Button width="200px" height="50px">
+        Close
+      </Button>
     </S.Container>
   );
 }

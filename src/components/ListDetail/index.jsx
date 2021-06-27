@@ -1,14 +1,14 @@
-// import * as S from "./styles";
+import * as S from "./styles";
 
 function ListDetail({ className, row }) {
   console.log(row);
 
   return (
-    <div className={className}>
+    <S.ListDetail>
       {row.map(({ value, size }) => (
-        <span style={{ width: size, display: "inline-block" }}>{value}</span>
+        <span style={{ width: size, display: "flex" }}>{value}</span>
       ))}
-    </div>
+    </S.ListDetail>
   );
 }
 

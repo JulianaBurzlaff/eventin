@@ -12,7 +12,9 @@ function AttendantValidated() {
         This QR Code is invalid or
         <br /> has already been used.
       </S.Phrase>
-      <Button>Try again</Button>
+      <Button width="200px" height="50px">
+        Try again
+      </Button>
     </S.Container>
   );
 }
