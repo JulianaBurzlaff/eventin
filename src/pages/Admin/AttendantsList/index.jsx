@@ -34,7 +34,7 @@ function AttendantsList() {
   };
 
   const newAttendant = () => {
-    history.push(`/admin/events/register`);
+    history.push(`/admin/attendants/register`);
   };
 
   const rows = attendants.map((attendant) => [

@@ -1,11 +1,25 @@
 import React from "react";
+import { useForm, Controller } from "react-hook-form";
 import btn from "../../assets/button-icon.svg";
+import TextField from "@material-ui/core/TextField";
 import Logo from "../../components/Logo";
-import Input from "../../components/Input";
+// import Input from "../../components/Input";
 import Button from "../../components/Button";
+import { usernameRequired, passwordRequired } from "../../services/validations";
 
 import { Container, ContainerLeft, ContainerRight } from "./styles";
 export default function Home() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
+  });
+
+  const onSubmit = ({ username, password }) => {
+    // history.push(`/admin/attendants`);
+  };
   return (
     <Container>
       <ContainerLeft>
@@ -19,12 +33,53 @@ export default function Home() {
       </ContainerLeft>
       <ContainerRight>
         <h2>Let’s get started!</h2>
-        <Input width={300} height={100} placeholder="Username" />
-        <Input width={300} height={100} placeholder="Password" />
-        <Button width={300} height={100}>
+
+        <Controller
+          name="username"
+          control={control}
+          rules={{ validate: usernameRequired }}
+          render={({ field }) => (
+            <TextField
+              error={!!errors.username}
+              id="outlined-basic"
+              label="Username"
+              variant="outlined"
+              placeholder="Type your username"
+              helperText={errors.username?.message}
+              margin="normal"
+              style={{ width: 300 }}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="password"
+          control={control}
+          rules={{ validate: passwordRequired }}
+          render={({ field }) => (
+            <TextField
+              error={!!errors.password}
+              type="password"
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              placeholder="Type your password"
+              helperText={errors.password?.message}
+              margin="normal"
+              style={{ width: 300 }}
+              {...field}
+            />
+          )}
+        />
+
+        <Button width="320px" height="50px" onClick={handleSubmit(onSubmit)}>
           <img src={btn} alt="Login" /> Login
         </Button>
       </ContainerRight>
     </Container>
   );
 }
+
+// {/* <Input width={300} height={100} placeholder="Username" />
+// <Input width={300} height={100} placeholder="Password" /> */}

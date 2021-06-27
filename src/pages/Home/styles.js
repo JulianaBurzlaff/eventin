@@ -14,9 +14,6 @@ export const ContainerLeft = styled.div`
   align-items: center;
   justify-content: center;
 
-  div {
-    margin-bottom: 115px;
-  }
   img {
     max-width: 35vw;
     margin: 0 0 20px 0;
@@ -50,13 +47,5 @@ export const ContainerRight = styled.div`
     color: #363535;
     opacity: 0.7;
     margin-bottom: 20px;
-  }
-  input {
-    margin-top: 20px;
-  }
-
-  button{
-    width: 320px;
-    height: 50px;
   }
 `;
