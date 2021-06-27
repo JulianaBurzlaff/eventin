@@ -9,7 +9,7 @@ export default function EventDetail() {
     <>
       <Header type="user" />
       <Container> 
-        <EventDescription></EventDescription>
+        <EventDescription btn1 = {"See other events"} btn2 = {"Subscribe"}></EventDescription>
       </Container>
     </>
   );
