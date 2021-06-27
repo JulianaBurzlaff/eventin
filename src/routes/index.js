@@ -11,6 +11,11 @@ import AttendantValidation from "../pages/Attendant/AttendantValidation";
 import AttendantValidated from "../pages/Attendant/AttendantValidated";
 import AttendantRefused from "../pages/Attendant/AttendantRefused";
 
+import EventsAvailable from "../pages/User/EventsAvailable";
+import EventDetail from "../pages/User/EventDetail";
+import UserEvents from "../pages/User/UserEvents";
+import UserTicket from "../pages/User/UserTicket";
+
 export default function Router() {
   return (
     <BrowserRouter>
@@ -33,6 +38,12 @@ export default function Router() {
           component={AttendantValidated}
         />
         <Route path="/attendant/refused" exact component={AttendantRefused} />
+        <Route path="/admin/usersregister" component={UserRegistration} />
+
+        <Route path="/user/events-available" component={EventsAvailable} />
+        <Route path="/user/event-detail" component={EventDetail} />
+        <Route path="/user/my-events" component={UserEvents} />
+        <Route path="/user/my-ticket" component={UserTicket} />
       </Switch>
     </BrowserRouter>
   );
