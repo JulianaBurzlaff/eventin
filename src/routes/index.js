@@ -9,7 +9,10 @@ import UserRegistration from "../pages/Admin/UserRegistration";
 
 import EventsAvailable from "../pages/User/EventsAvailable";
 import EventDetail from "../pages/User/EventDetail";
-// import UserRegistration from "../pages/Admin/UserRegistration";
+import UserEvents from "../pages/User/UserEvents";
+import UserTicket from "../pages/User/UserTicket";
+
+
 
 export default function Router() {
   return (
@@ -24,6 +27,10 @@ export default function Router() {
 
         <Route path="/user/events-available" component={EventsAvailable} />
         <Route path="/user/event-detail" component={EventDetail} />
+        <Route path="/user/my-events" component={UserEvents} />
+        <Route path="/user/my-ticket" component={UserTicket} />
+
+
 
 
       </Switch>
