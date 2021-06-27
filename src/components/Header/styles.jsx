@@ -18,5 +18,5 @@ export const Search = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  gap: 100px;
+  gap: 65px;
 `;
