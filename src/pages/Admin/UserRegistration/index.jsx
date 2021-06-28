@@ -31,10 +31,14 @@ function UserRegistration() {
   };
 
   const onSubmit = async ({ fullname, username, password }) => {
-    console.log("chegou");
-    //incluir adminId
     try {
-      await registerUser({ fullname, username, password });
+      await registerUser({
+        // adminId: admin.id,
+        fullname,
+        username,
+        password,
+        type: "user",
+      });
 
       history.push(`/admin/users`);
     } catch (error) {

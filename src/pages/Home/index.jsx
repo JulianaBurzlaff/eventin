@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useLogin } from "../../Hooks/useLogin";
 import btn from "../../assets/button-icon.svg";
 import TextField from "@material-ui/core/TextField";
+import Alert from "@material-ui/lab/Alert";
 import Logo from "../../components/Logo";
 // import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { usernameRequired, passwordRequired } from "../../services/validations";
-
 import { Container, ContainerLeft, ContainerRight } from "./styles";
+
 export default function Home() {
+  const { login } = useLogin();
+  const [error, setError] = useState();
   const {
     control,
     handleSubmit,
@@ -17,9 +21,15 @@ export default function Home() {
     mode: "onBlur",
   });
 
-  const onSubmit = ({ username, password }) => {
-    // history.push(`/admin/attendants`);
+  const onSubmit = async ({ username, password }) => {
+    setError();
+    const user = await login({ username, password });
+    console.log(user);
+    if (!user) {
+      setError("Username or password invalid");
+    }
   };
+
   return (
     <Container>
       <ContainerLeft>
@@ -76,6 +86,7 @@ export default function Home() {
         <Button width="320px" height="50px" onClick={handleSubmit(onSubmit)}>
           <img src={btn} alt="Login" /> Login
         </Button>
+        {error && <Alert severity="error">{error}</Alert>}
       </ContainerRight>
     </Container>
   );

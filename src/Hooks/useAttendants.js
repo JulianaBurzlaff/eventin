@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AttendantContext } from "../providers/AttendantProvider";
 
-export function useAttendents() {
+export function useAttendants() {
   const context = useContext(AttendantContext);
 
   return context;

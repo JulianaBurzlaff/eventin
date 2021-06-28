@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+import { useAttendants } from "../../../Hooks/useAttendants";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
@@ -31,6 +32,7 @@ const events = [
 ];
 
 function AttendantRegistration() {
+  const { registerAttendant } = useAttendants();
   const history = useHistory();
   const {
     control,
@@ -45,8 +47,21 @@ function AttendantRegistration() {
     history.push(`/admin/attendants`);
   };
 
-  const onSubmit = ({ fullname, username, password, event }) => {
-    history.push(`/admin/attendants`);
+  const onSubmit = async ({ fullname, username, password, event }) => {
+    try {
+      await registerAttendant({
+        // adminId: admin.id,
+        fullname,
+        username,
+        password,
+        event,
+        type: "attendant",
+      });
+
+      history.push(`/admin/attendants`);
+    } catch (error) {
+      //
+    }
   };
 
   return (
