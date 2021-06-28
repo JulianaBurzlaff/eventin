@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import Header from "../../../components/Header";
 import ListDetail from "../../../components/ListDetail";
 import Button from "../../../components/Button";
+import AdminLayout from "../../../components/AdminLayout";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./styles";
 
@@ -48,7 +49,7 @@ function UserList() {
   ]);
 
   return (
-    <>
+    <AdminLayout>
       <Header type="admin" />
       <S.Container>
         <S.ListHeader>
@@ -69,7 +70,7 @@ function UserList() {
           </Button>
         </S.Button>
       </S.Container>
-    </>
+    </AdminLayout>
   );
 }
 

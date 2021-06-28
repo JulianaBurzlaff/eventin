@@ -5,6 +5,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useUsers } from "../../Hooks/useUsers";
+import { useAuth } from "../../Hooks/useAuth";
 
 const optionsUsers = [
   {
@@ -43,7 +44,7 @@ const optionsAdmin = [
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu({ option = "user" }) {
-  const { logout } = useUsers();
+  const { logout } = useAuth();
   const history = useHistory();
   const [selectedOption, setSelectedOption] = React.useState();
   const [anchorEl, setAnchorEl] = React.useState(null);

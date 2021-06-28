@@ -1,13 +1,14 @@
 import Header from "../../../components/Header";
 import UserTicket from "../../../components/UserTicket";
 import Button from "../../../components/Button";
+import UserLayout from "../../../components/UserLayout";
 
 import { Container } from "./styles";
 // Change EventCard to EventList Component
 
 export default function UserEvents() {
   return (
-    <>
+    <UserLayout>
       <Header type="user" />
       <Container>
         <h2>This QR code is your ticket</h2>
@@ -18,6 +19,6 @@ export default function UserEvents() {
           <Button>Print ticket</Button>
         </div>
       </Container>
-    </>
+    </UserLayout>
   );
 }
