@@ -1,28 +1,26 @@
-import React, { createContext } from "react";
-// import { useSnackbar } from "notistack";
-// import { api } from "../services/api";
+import React, { createContext, useCallback, useState } from "react";
+import { useSnackbar } from "notistack";
+import { api } from "../services/api";
 
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  // const [user, setUser] = useState();
-  // const { enqueueSnackbar } = useSnackbar();
+  const [user, setUser] = useState();
+  const { enqueueSnackbar } = useSnackbar();
 
-  // const register = useCallback(async ({ fullName, username, password }) => {
-  //   try {
-  //     const { data } = await api.post("/users", {
-  //       fullName,
-  //       username,
-  //       password,
-  //     });
-  //     setUser(data);
-  //     enqueueSnackbar("Usuário cadastrado com sucesso!", {
-  //       variant: "success",
-  //     });
-  //   } catch (error) {
-  //     //
-  //   }
-  // }, []);
+  const registerUser = useCallback(async ({ fullname, username, password }) => {
+    const { data } = await api.post("/users", {
+      fullname,
+      username,
+      password,
+    });
+    setUser(data);
+    console.log(user);
+    enqueueSnackbar("User successfully registered", {
+      variant: "success",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // const logout = useCallback(() => {
   //   setUser();
@@ -43,12 +41,10 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-    // value={{
-    //   user,
-    //   register,
-    //   logout,
-    //   login,
-    // }}
+      value={{
+        user,
+        registerUser,
+      }}
     >
       {children}
     </UserContext.Provider>

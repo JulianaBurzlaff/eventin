@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+import { useUsers } from "../../../Hooks/useUsers";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
@@ -14,6 +15,7 @@ import {
 import * as S from "./styles";
 
 function UserRegistration() {
+  const { registerUser } = useUsers();
   const history = useHistory();
   const {
     control,
@@ -28,9 +30,16 @@ function UserRegistration() {
     history.push(`/admin/users`);
   };
 
-  const onSubmit = ({ fullname, username, password }) => {
+  const onSubmit = async ({ fullname, username, password }) => {
+    console.log("chegou");
     //incluir adminId
-    history.push(`/admin/users`);
+    try {
+      await registerUser({ fullname, username, password });
+
+      history.push(`/admin/users`);
+    } catch (error) {
+      //
+    }
   };
 
   return (
