@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Header from "../../../components/Header";
 import EventList from "../../../components/EventList";
+import UserLayout from '../../../components/UserLayout';
 
 import { api } from "../../../services/api.js";
 
