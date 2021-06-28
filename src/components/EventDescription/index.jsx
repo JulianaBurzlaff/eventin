@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import { Container, EventInfor } from "./styles";
 
@@ -8,35 +9,35 @@ import calendar from "../../assets/calendar.svg";
 import clock from "../../assets/clock.svg";
 import pin from "../../assets/pin.svg";
 
+import { useEvents } from "../../Hooks/useEvents";
+
 export default function EventDescription(props) {
+  const { events, eventId } = useEvents();
+
+  const navigate = useHistory();
+
+
   return (
     <Container>
       <img className="eventPic"></img>
       <EventInfor>
-        <h3>Event</h3>
+        <h3>{events[eventId-1].name}</h3>
         <ul>
           <li>
             <img src={calendar}></img>
-            <span>Date</span>
+            <span>{events[eventId-1].date}</span>
           </li>
           <li>
-            <img src={clock}></img>Time
+            <img src={clock}></img>{events[eventId-1].time}
           </li>
           <li>
-            <img src={pin}></img>Location
+            <img src={pin}></img>{events[eventId-1].location}
           </li>
         </ul>
         <legend>
-          At Scrum Day Europe 2021, experienced practioners tell stories about
-          their successes and failures, facilitate workshops and suggest better
-          ways to maximize value for your business and customers. Join us online
-          and help maximize the value from our balanced and diverse program. At
-          Scrum Day Europe 2021, experienced practioners tell stories about
-          their successes and failures, facilitate workshops and suggest better
-          ways to maximize value for your business and customers. Join us online
-          and help maximize the value from our balanced and diverse program.
+        {events[eventId-1].description}
         </legend>
-        <Button>{props.btn1}</Button>
+        <Button onClick = {()=> navigate.push(`/user/events-available`)}>{props.btn1}</Button>
         <Button>{props.btn2}</Button>
       </EventInfor>
     </Container>

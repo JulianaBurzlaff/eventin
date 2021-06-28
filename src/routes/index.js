@@ -49,7 +49,7 @@ export default function Router() {
         <Route path="/attendant/refused" exact component={AttendantRefused} />
 
         <Route path="/user/events-available" component={EventsAvailable} />
-        <Route path="/user/event-detail" component={EventDetail} />
+        <Route path="/user/event-detail/:event_name" component={EventDetail} />
         <Route path="/user/my-events" component={UserEvents} />
         <Route path="/user/my-ticket" component={UserTicket} />
       </Switch>
