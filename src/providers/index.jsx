@@ -4,11 +4,11 @@ import { AdminProvider } from "./AdminProvider";
 import { UserProvider } from "./UserProvider";
 import { EventProvider } from "./EventProvider";
 import { AttendantProvider } from "./AttendantProvider";
-import { LoginProvider } from "./LoginProvider";
+import { AuthProvider } from "./AuthProvider";
 
 function AppProvider(props) {
   return (
-    <LoginProvider>
+    <AuthProvider>
       <AdminProvider>
         <EventProvider>
           <UserProvider>
@@ -16,7 +16,7 @@ function AppProvider(props) {
           </UserProvider>
         </EventProvider>
       </AdminProvider>
-    </LoginProvider>
+    </AuthProvider>
   );
 }
 
