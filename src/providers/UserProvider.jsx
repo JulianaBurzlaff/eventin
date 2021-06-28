@@ -9,15 +9,15 @@ export const UserProvider = ({ children }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const registerUser = useCallback(
-    async ({ fullname, username, password, type }) => {
+    async ({ fullname, username, password, type, adminId }) => {
       const { data } = await api.post("/users", {
         fullname,
         username,
         password,
         type,
+        adminId,
       });
       setUser(data);
-      console.log(user);
       enqueueSnackbar("User successfully registered", {
         variant: "success",
       });
@@ -25,23 +25,6 @@ export const UserProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
-
-  // const logout = useCallback(() => {
-  //   setUser();
-  // }, []);
-
-  // const login = useCallback(async ({ username, password }) => {
-  //   try {
-  //     const { data } = await api.get(
-  //       `/users?username=${username}&password=${password}`
-  //     );
-  //     const userData = data[0];
-  //     setUser(userData);
-  //     return userData;
-  //   } catch (error) {
-  //     return null;
-  //   }
-  // }, []);
 
   return (
     <UserContext.Provider
