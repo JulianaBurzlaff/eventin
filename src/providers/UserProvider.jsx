@@ -5,7 +5,8 @@ import { api } from "../services/api";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [newUser, setNewUser] = useState();
+  const [users, setUsers] = useState();
   const { enqueueSnackbar } = useSnackbar();
 
   const registerUser = useCallback(
@@ -17,7 +18,7 @@ export const UserProvider = ({ children }) => {
         type,
         adminId,
       });
-      setUser(data);
+      setNewUser(data);
       enqueueSnackbar("User successfully registered", {
         variant: "success",
       });
@@ -26,11 +27,29 @@ export const UserProvider = ({ children }) => {
     []
   );
 
+  const fetchUsers = useCallback(async (adminId) => {
+    try {
+      const { data } = await api.get("/users");
+
+      const users = data.filter(
+        (usr) => usr.type === "user" && usr.adminId === adminId
+      );
+
+      setUsers(users);
+      return users;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <UserContext.Provider
       value={{
-        user,
+        newUser,
         registerUser,
+        fetchUsers,
+        users,
       }}
     >
       {children}

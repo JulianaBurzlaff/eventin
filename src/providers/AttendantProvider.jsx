@@ -9,12 +9,13 @@ export const AttendantProvider = ({ children }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const registerAttendant = useCallback(
-    async ({ fullname, username, password, event, type }) => {
+    async ({ fullname, username, password, event, type, adminId }) => {
       const { data } = await api.post("/users", {
         fullname,
         username,
         password,
         type,
+        adminId,
       });
       setAttendant(data);
       enqueueSnackbar("User successfully registered", {

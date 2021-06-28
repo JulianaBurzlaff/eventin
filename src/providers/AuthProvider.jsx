@@ -10,8 +10,6 @@ export const AuthProvider = ({ children }) => {
     initialUser ? JSON.parse(initialUser) : null
   );
 
-  console.log(user);
-
   const login = useCallback(async ({ username, password }) => {
     const { data } = await api.post("/login", { username, password });
     setUser(data);

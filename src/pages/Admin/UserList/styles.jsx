@@ -19,19 +19,19 @@ export const ListHeader = styled.div`
 export const List = styled.div``;
 
 export const Fullname = styled.div`
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: center;
 `;
 
 export const Username = styled.div`
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: center;
 `;
 
-export const Password = styled.div`
-  width: 30%;
+export const ID = styled.div`
+  width: 10%;
   display: flex;
   justify-content: center;
 `;

@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useUsers } from "../../../Hooks/useUsers";
+import { useAuth } from "../../../Hooks/useAuth";
 import Header from "../../../components/Header";
 import ListDetail from "../../../components/ListDetail";
 import Button from "../../../components/Button";
@@ -6,26 +9,11 @@ import AdminLayout from "../../../components/AdminLayout";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./styles";
 
-const users = [
-  {
-    fullname: "Fulano",
-    username: "fulado.ciclano",
-    password: 12345,
-  },
-  {
-    fullname: "Fulano",
-    username: "fulado.ciclano",
-    password: 12345,
-  },
-  {
-    fullname: "Fulano",
-    username: "fulado.ciclano",
-    password: 12345,
-  },
-];
-
 function UserList() {
   const history = useHistory();
+  const { user } = useAuth();
+  const { users = [], fetchUsers } = useUsers();
+
   const onDelete = (user) => {
     alert(`delete ${user.fullname}`);
   };
@@ -34,10 +22,17 @@ function UserList() {
     history.push(`/admin/users/register`);
   };
 
+  useEffect(() => {
+    if (user) {
+      fetchUsers(user.id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
   const rows = users.map((user) => [
-    { value: user.fullname, size: "30%" },
-    { value: user.username, size: "30%" },
-    { value: user.password, size: "30%" },
+    { value: user.id, size: "10%" },
+    { value: user.fullname, size: "40%" },
+    { value: user.username, size: "40%" },
     {
       value: (
         <button onClick={() => onDelete(user)}>
@@ -53,9 +48,9 @@ function UserList() {
       <Header type="admin" />
       <S.Container>
         <S.ListHeader>
+          <S.ID>ID</S.ID>
           <S.Fullname>Full name</S.Fullname>
           <S.Username>Username</S.Username>
-          <S.Password>Password</S.Password>
           <S.Actions>Actions</S.Actions>
         </S.ListHeader>
 
