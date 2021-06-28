@@ -36,11 +36,11 @@ function UserRegistration() {
   const onSubmit = async ({ fullname, username, password }) => {
     try {
       await registerUser({
-        adminId: user.id,
         fullname,
         username,
         password,
         type: "user",
+        adminId: user.id,
       });
 
       history.push(`/admin/users`);
