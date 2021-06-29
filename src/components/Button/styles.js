@@ -30,5 +30,8 @@ export const ButtonComponent = styled.button`
   }
   &:disabled {
     background: #c4c4c4;
+    cursor: auto ;
+
   }
+
 `;

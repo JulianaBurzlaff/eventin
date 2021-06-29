@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState();
   const { enqueueSnackbar } = useSnackbar();
 
+  
   const registerUser = useCallback(
     async ({ fullname, username, password, type, adminId }) => {
       const { data } = await api.post("/users", {
