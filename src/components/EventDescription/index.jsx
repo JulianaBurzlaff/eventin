@@ -33,7 +33,7 @@ export default function EventDescription(props) {
 
   return (
     <Container>
-      <img className="eventPic"></img>
+      <img className="eventPic" src = {events[eventId - 1].image}></img>
           <EventInfor>
             <h3>{events[eventId - 1].eventName}</h3>
             <ul>
