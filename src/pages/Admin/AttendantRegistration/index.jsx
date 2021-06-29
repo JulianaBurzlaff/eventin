@@ -37,13 +37,12 @@ function AttendantRegistration() {
     history.push(`/admin/attendants`);
   };
 
-  const onSubmit = async ({ fullname, username, password, event }) => {
+  const onSubmit = async ({ fullname, username, password }) => {
     try {
       await registerAttendant({
         fullname,
         username,
         password,
-        event,
         type: "attendant",
         adminId: user.id,
       });
@@ -114,31 +113,6 @@ function AttendantRegistration() {
                   fullWidth
                   {...field}
                 />
-              )}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Controller
-              name="event"
-              control={control}
-              rules={{ validate: eventRequired }}
-              render={({ field }) => (
-                <TextField
-                  error={!!errors.event}
-                  select
-                  id="outlined-basic"
-                  label="Event"
-                  variant="outlined"
-                  helperText={errors.event?.message}
-                  fullWidth
-                  {...field}
-                >
-                  {events.map((event) => (
-                    <MenuItem key={event.id} value={event.id}>
-                      {event.eventName}
-                    </MenuItem>
-                  ))}
-                </TextField>
               )}
             />
           </Grid>

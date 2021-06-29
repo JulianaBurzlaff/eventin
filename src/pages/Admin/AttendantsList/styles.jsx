@@ -19,13 +19,13 @@ export const ListHeader = styled.div`
 export const List = styled.div``;
 
 export const Fullname = styled.div`
-  width: 26%;
+  width: 40%;
   display: flex;
   justify-content: center;
 `;
 
 export const Username = styled.div`
-  width: 26%;
+  width: 40%;
   display: flex;
   justify-content: center;
 `;
@@ -36,14 +36,8 @@ export const Id = styled.div`
   justify-content: center;
 `;
 
-export const Event = styled.div`
-  width: 26%;
-  display: flex;
-  justify-content: center;
-`;
-
 export const Actions = styled.div`
-  width: 12%;
+  width: 10%;
   display: flex;
   justify-content: center;
 `;

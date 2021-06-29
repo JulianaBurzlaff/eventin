@@ -10,7 +10,7 @@ export const AttendantProvider = ({ children }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const registerAttendant = useCallback(
-    async ({ fullname, username, password, event, type, adminId }) => {
+    async ({ fullname, username, password, type, adminId }) => {
       const { data } = await api.post("/users", {
         fullname,
         username,
@@ -19,7 +19,7 @@ export const AttendantProvider = ({ children }) => {
         adminId,
       });
       setNewAttendant(data);
-      enqueueSnackbar("User successfully registered", {
+      enqueueSnackbar("Attendant successfully registered", {
         variant: "success",
       });
     },
@@ -43,6 +43,23 @@ export const AttendantProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const deleteAttendant = useCallback(async (attendantId) => {
+    try {
+      await api.delete("/users", { data: { attendantId } });
+
+      setAttendants((prev) =>
+        prev.filter((attendant) => attendant.id !== attendantId)
+      );
+      enqueueSnackbar("Attendant successfully deleted", {
+        variant: "success",
+      });
+      return true;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <AttendantContext.Provider
       value={{
@@ -50,6 +67,7 @@ export const AttendantProvider = ({ children }) => {
         attendants,
         registerAttendant,
         fetchAttendants,
+        deleteAttendant,
       }}
     >
       {children}

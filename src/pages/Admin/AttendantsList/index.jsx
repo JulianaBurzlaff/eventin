@@ -13,10 +13,16 @@ import * as S from "./styles";
 function AttendantsList() {
   const history = useHistory();
   const { user } = useAuth();
-  const { attendants = [], fetchAttendants } = useAttendants();
+  const { attendants = [], fetchAttendants, deleteAttendant } = useAttendants();
 
   const onDelete = (attendant) => {
-    alert(`delete ${attendant.fullname}`);
+    if (
+      window.confirm(
+        `Are you sure that you want to delete ${attendant.fullname}?`
+      )
+    ) {
+      deleteAttendant(attendant.id);
+    }
   };
 
   const newAttendant = () => {
@@ -32,24 +38,15 @@ function AttendantsList() {
 
   const rows = attendants.map((attendant) => [
     { value: attendant.id, size: "10%" },
-    { value: attendant.fullname, size: "26%" },
-    { value: attendant.username, size: "26%" },
-    { value: attendant.event, size: "26%" },
-    {
-      value: (
-        <button onClick={() => onDelete(attendant)}>
-          <EditIcon style={{ cursor: "pointer" }} />
-        </button>
-      ),
-      size: "6%",
-    },
+    { value: attendant.fullname, size: "40%" },
+    { value: attendant.username, size: "40%" },
     {
       value: (
         <button onClick={() => onDelete(attendant)}>
           <DeleteIcon style={{ cursor: "pointer" }} />
         </button>
       ),
-      size: "6%",
+      size: "10%",
     },
   ]);
 
@@ -61,7 +58,6 @@ function AttendantsList() {
           <S.Id>ID</S.Id>
           <S.Fullname>Full name</S.Fullname>
           <S.Username>Username</S.Username>
-          <S.Event>Event</S.Event>
           <S.Actions>Actions</S.Actions>
         </S.ListHeader>
 
