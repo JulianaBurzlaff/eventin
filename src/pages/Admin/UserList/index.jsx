@@ -15,13 +15,17 @@ import * as S from "./styles";
 function UserList() {
   const history = useHistory();
   const { user } = useAuth();
-  const { users = [], fetchUsers } = useUsers();
+  const { users = [], fetchUsers, deleteUser } = useUsers();
   // const [pages, setPages] = useState(0);
   // const [page, setPage] = useState(0);
   // const [searchValue, setSearchValue] = useState("");
 
   const onDelete = (user) => {
-    alert(`delete ${user.fullname}`);
+    if (
+      window.confirm(`Are you sure that you want to delete ${user.fullname}?`)
+    ) {
+      deleteUser(user.id);
+    }
   };
 
   const newUser = () => {
@@ -31,7 +35,7 @@ function UserList() {
   useEffect(() => {
     if (user) {
       fetchUsers(user.id);
-      console.log(users)
+      console.log(users);
       // setPages(Math.ceil(users.length / PAGE_LIMIT));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

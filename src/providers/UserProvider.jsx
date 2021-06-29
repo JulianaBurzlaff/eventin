@@ -43,13 +43,30 @@ export const UserProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const deleteUser = useCallback(async (userId) => {
+    try {
+      await api.delete("/users", { data: { userId } });
+
+      setUsers((prev) => prev.filter((user) => user.id !== userId));
+      enqueueSnackbar("User successfully deleted", {
+        variant: "success",
+      });
+      return true;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const setUserEvent = useCallback(
-    
-  async (eventId, username ) => {
-      console.log("aa",username, eventId)
+    async (eventId, username) => {
+      console.log("aa", username, eventId);
       try {
-        const response = api.put(`/submit/${username}&${eventId}`, { username, eventId });
-        setUsers(response)
+        const response = api.put(`/submit/${username}&${eventId}`, {
+          username,
+          eventId,
+        });
+        setUsers(response);
       } catch (err) {
         return null;
       }
@@ -65,7 +82,8 @@ export const UserProvider = ({ children }) => {
         registerUser,
         fetchUsers,
         users,
-        setUserEvent
+        setUserEvent,
+        deleteUser,
       }}
     >
       {children}
