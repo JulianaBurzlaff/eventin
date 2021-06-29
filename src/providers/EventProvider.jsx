@@ -1,6 +1,7 @@
 import React, { useState, createContext, useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSnackbar } from "notistack";
+
 import { useAuth } from "../Hooks/useAuth";
 import { api } from "../services/api";
 var qrcodeGenerator = require("qrcode-generator");
@@ -8,20 +9,13 @@ var qrcodeGenerator = require("qrcode-generator");
 export const EventContext = createContext({});
 
 export const EventProvider = ({ children }) => {
-  const history = useHistory();
   const [events, setEvents] = useState([]);
+  const [userEvents, setUserEvents] = useState([]);
   const [eventId, setEventId] = useState();
-  const { enqueueSnackbar } = useSnackbar();
+  const [eventDataTicket, setEventDataTicket] = useState();
 
-  useEffect(async () => {
-    try {
-      const { data } = await api.get("/events");
-      setEvents(data);
-      console.log(events);
-    } catch (err) {
-      return null;
-    }
-  }, []);
+  const [ticket, setTicket] = useState();
+  const { enqueueSnackbar } = useSnackbar();
 
   const registerEvent = useCallback(
     async ({
@@ -50,6 +44,19 @@ export const EventProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+
+  const fetchUserEvents = useCallback(async (userId) => {
+    try {
+      const { data } = await api.get(`/events/${userId}`);
+
+      setUserEvents(data);
+
+      return data;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const fetchEvents = useCallback(async (adminId) => {
     try {
@@ -123,7 +130,9 @@ export const EventProvider = ({ children }) => {
       var typeNumber = 4;
       var errorCorrectionLevel = "L";
       var qr = qrcodeGenerator(typeNumber, errorCorrectionLevel);
-      qr.addData(`http://192.168.15.11:3000/attendant/validation?id=${token}`);
+      qr.addData(
+        `http://192.168.15.11:3000/attendant/validation?token=${token}`
+      );
       qr.make();
 
       document.getElementById("qrcode").innerHTML = qr.createImgTag();
@@ -135,18 +144,51 @@ export const EventProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getTicketData = useCallback(async ({ token }) => {
+    try {
+      const { data } = await api.get("/tickets");
+
+      const ticket = data.filter((ticket) => ticket.token === token);
+      setTicket(ticket);
+      return ticket;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getEventDataFromTicket = useCallback(async (eventId) => {
+    try {
+      const { data } = await api.get("/users");
+
+      const event = data.filter((evt) => evt.id === eventId);
+
+      setEventDataTicket(event);
+      return event;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <EventContext.Provider
       value={{
         events,
+        userEvents,
         setEvents,
         eventId,
         setEventId,
         registerEvent,
         fetchEvents,
+        fetchUserEvents,
         deleteEvent,
         generateTicket,
         getTicket,
+        getEventDataFromTicket,
+        eventDataTicket,
+        getTicketData,
+        ticket,
       }}
     >
       {children}

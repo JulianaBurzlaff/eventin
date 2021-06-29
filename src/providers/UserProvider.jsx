@@ -8,8 +8,8 @@ export const UserProvider = ({ children }) => {
   const [newUser, setNewUser] = useState();
   const [users, setUsers] = useState();
   const { enqueueSnackbar } = useSnackbar();
+  const [userDataTicket, setUserDataTicket] = useState();
 
-  
   const registerUser = useCallback(
     async ({ fullname, username, password, type, adminId }) => {
       const { data } = await api.post("/users", {
@@ -93,6 +93,20 @@ export const UserProvider = ({ children }) => {
     []
   );
 
+  const getUserDataFromTicket = useCallback(async (userId) => {
+    try {
+      const { data } = await api.get("/users");
+
+      const user = data.filter((usr) => usr.id === userId);
+
+      setUserDataTicket(user);
+      return user;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <UserContext.Provider
       value={{
@@ -103,6 +117,8 @@ export const UserProvider = ({ children }) => {
         setUserEvent,
         deleteUser,
         delUserEvent,
+        getUserDataFromTicket,
+        userDataTicket,
       }}
     >
       {children}

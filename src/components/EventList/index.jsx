@@ -4,9 +4,15 @@ import EventCard from "../EventCard";
 import { api } from "../../services/api.js";
 
 import { useEvents } from "../../Hooks/useEvents";
+import { useAuth } from "../../Hooks/useAuth";
 
 export default function EventList(props) {
-  const { events } = useEvents();
+  const { user } = useAuth();
+  const { events, fetchEvents } = useEvents();
+
+  useEffect(() => {
+    fetchEvents(user.adminId);
+  }, []);
 
   return (
     <>

@@ -47,6 +47,7 @@ export default function EventCard(props) {
     if (props.btn2 === "Subscribe") {
       setUserEvent(id, user.username);
       setDisabled(true);
+      generateTicket({ eventId: id, userId: user.id });
       console.log("Ok");
     } else if (props.btn2 === "Unsubscribe") {
       delUserEvent(id, user.username);
