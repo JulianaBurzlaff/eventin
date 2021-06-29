@@ -4,6 +4,20 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0;
+
+  h1 {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 100px;
+    h1 {
+      display: flex;
+      color: #835afd;
+      font-size: 40px;
+      margin: 20px 0 70px;
+    }
+  }
 `;
 export const ContainerLeft = styled.div`
   background: #835afd;
@@ -28,6 +42,10 @@ export const ContainerLeft = styled.div`
     color: #f8f8f8;
     opacity: 0.7;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const ContainerRight = styled.div`
@@ -47,5 +65,10 @@ export const ContainerRight = styled.div`
     color: #363535;
     opacity: 0.7;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      line-height: 42px;
+      font-size: 20px;
+    }
   }
 `;

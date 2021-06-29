@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useAttendants } from "../../../Hooks/useAttendants";
 import { useAuth } from "../../../Hooks/useAuth";
+import { useEvents } from "../../../Hooks/useEvents";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
@@ -18,24 +19,10 @@ import {
 } from "../../../services/validations";
 import * as S from "./styles";
 
-const events = [
-  {
-    id: 1,
-    name: "Scrum Day",
-  },
-  {
-    id: 2,
-    name: "Tech Career Fair",
-  },
-  {
-    id: 3,
-    name: "Innovation Day",
-  },
-];
-
 function AttendantRegistration() {
   const { registerAttendant } = useAttendants();
   const { user } = useAuth();
+  const { events } = useEvents();
   const history = useHistory();
   const {
     control,
@@ -148,7 +135,7 @@ function AttendantRegistration() {
                 >
                   {events.map((event) => (
                     <MenuItem key={event.id} value={event.id}>
-                      {event.name}
+                      {event.eventName}
                     </MenuItem>
                   ))}
                 </TextField>

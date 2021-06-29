@@ -41,6 +41,7 @@ export default function Home() {
           </div>
         </ContainerLeft>
         <ContainerRight>
+          <h1>EVENTIN</h1>
           <h2>Let’s get started!</h2>
 
           <Controller

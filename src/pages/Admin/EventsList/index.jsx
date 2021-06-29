@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useEvents } from "../../../Hooks/useEvents";
+import { useAuth } from "../../../Hooks/useAuth";
 import Header from "../../../components/Header";
 import ListDetail from "../../../components/ListDetail";
 import Button from "../../../components/Button";
@@ -6,39 +9,34 @@ import AdminLayout from "../../../components/AdminLayout";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./styles";
 
-const events = [
-  {
-    eventname: "Scrum Day",
-    date: "07/02/2021",
-    time: "08:00",
-    location: "New York",
-  },
-  {
-    eventname: "Scrum Day",
-    date: "07/02/2021",
-    time: "08:00",
-    location: "New York",
-  },
-  {
-    eventname: "Scrum Day",
-    date: "07/02/2021",
-    time: "08:00",
-    location: "New York",
-  },
-];
-
 function EventsList() {
   const history = useHistory();
+  const { user } = useAuth();
+  const { events = [], fetchEvents, deleteEvent } = useEvents();
+
   const onDelete = (event) => {
-    alert(`delete ${event.eventname}`);
+    if (
+      window.confirm(`Are you sure that you want to delete ${event.eventName}?`)
+    ) {
+      console.log("delete");
+      deleteEvent(event.id);
+    }
   };
 
   const newEvent = () => {
     history.push(`/admin/events/register`);
   };
 
+  useEffect(() => {
+    if (user) {
+      fetchEvents(user.id);
+      // setPages(Math.ceil(users.length / PAGE_LIMIT));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
   const rows = events.map((event) => [
-    { value: event.eventname, size: "22%" },
+    { value: event.eventName, size: "22%" },
     { value: event.date, size: "22%" },
     { value: event.time, size: "22%" },
     { value: event.location, size: "22%" },

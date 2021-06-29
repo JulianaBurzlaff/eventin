@@ -20,8 +20,24 @@ export const AuthProvider = ({ children }) => {
   const logout = useCallback(async () => {
     await api.post("/logout");
     localStorage.removeItem("user");
-    setUser();
+    setUser(null);
   }, []);
+
+  api.interceptors.response.use(
+    (res) => res,
+    async (error) => {
+      const response = error && error.response ? error.response : { data: {} };
+      const { status, data } = response;
+
+      if (status === 400 && data.message === "User not authorized") {
+        logout();
+      }
+
+      console.log(data);
+
+      return Promise.reject(data);
+    }
+  );
 
   return (
     <AuthContext.Provider

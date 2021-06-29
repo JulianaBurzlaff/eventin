@@ -16,7 +16,6 @@ import {
   dateRequired,
   timeRequired,
   descriptionRequired,
-  imageRequired,
 } from "../../../services/validations";
 import * as S from "./styles";
 
@@ -178,14 +177,7 @@ function EventRegistration() {
             />
           </Grid>
           <Grid item xs={12}>
-            <Controller
-              name="image"
-              control={control}
-              rules={{ validate: imageRequired }}
-              render={({ field }) => (
-                <ImageUpload onFileUploaded={onFileUploaded} />
-              )}
-            />
+            <ImageUpload onFileUploaded={onFileUploaded} />
           </Grid>
           <Grid container item xs={12} justify="center">
             <Button

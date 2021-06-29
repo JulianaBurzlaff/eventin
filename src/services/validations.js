@@ -1,3 +1,5 @@
+import { api } from "../services/api";
+
 export function fullnameRequired(value) {
   if (!value) {
     return "Full name required";
@@ -5,11 +7,24 @@ export function fullnameRequired(value) {
   return undefined;
 }
 
-export function usernameRequired(value) {
+export async function usernameRequired(value) {
   if (!value) {
     return "Username required";
+  } else {
+    try {
+      const { data } = await api.get("/users");
+      console.log(data);
+      const users = data.filter((usr) => usr.username === value);
+
+      if (users.length > 0) {
+        return "Username already exists";
+      } else {
+        return undefined;
+      }
+    } catch (error) {
+      //
+    }
   }
-  return undefined;
 }
 
 export function passwordRequired(value) {
