@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useEvents } from "../../Hooks/useEvents";
 import { useUsers } from "../../Hooks/useUsers";
@@ -11,6 +11,7 @@ import Button from "../Button";
 import calendar from "../../assets/calendar.svg";
 import clock from "../../assets/clock.svg";
 import pin from "../../assets/pin.svg";
+import createPalette from "@material-ui/core/styles/createPalette";
 
 export default function EventCard(props) {
   const navigate = useHistory();
@@ -20,8 +21,10 @@ export default function EventCard(props) {
   const [disabled, setDisabled] = useState();
 
   useEffect(() => {
-    if (user.events.includes(`${props.id}`)) {
-      setDisabled(true);
+    if (user.events) {
+      if (user.events.includes(`${props.id}`)) {
+        setDisabled(true);
+      }
     }
   }, []);
 
@@ -36,7 +39,7 @@ export default function EventCard(props) {
 
   return (
     <Container>
-      <img className="eventPic"></img>
+      <img className="eventPic" src={props.image}></img>
       <EventInfor>
         <h3>{props.name}</h3>
         <ul>

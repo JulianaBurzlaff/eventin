@@ -10,16 +10,15 @@ export const EventProvider = ({ children }) => {
   const [newEvent, setNewEvent] = useState();
   const { enqueueSnackbar } = useSnackbar();
 
-  // useEffect(async () => {
-  //   console.log("ok");
-  //   try {
-  //     const { data } = await api.get("/events");
-  //     setEvents(data);
-  //     console.log(events);
-  //   } catch (err) {
-  //     return null;
-  //   }
-  // }, []);
+  useEffect(async () => {
+    try {
+      const { data } = await api.get("/events");
+      setEvents(data);
+      console.log(events);
+    } catch (err) {
+      return null;
+    }
+  }, []);
 
   const registerEvent = useCallback(
     async ({
