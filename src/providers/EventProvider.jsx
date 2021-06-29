@@ -1,5 +1,5 @@
 import React, { useState, createContext, useCallback, useEffect } from "react";
-// import { useSnackbar } from "notistack";
+import { useSnackbar } from "notistack";
 import { api } from "../services/api";
 
 export const EventContext = createContext({});
@@ -7,6 +7,8 @@ export const EventContext = createContext({});
 export const EventProvider = ({ children }) => {
   const [events, setEvents] = useState();
   const [eventId, setEventId] = useState();
+  const [newEvent, setNewEvent] = useState();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(async () => {
     console.log("ok");
@@ -18,6 +20,34 @@ export const EventProvider = ({ children }) => {
       return null;
     }
   }, []);
+
+  const registerEvent = useCallback(
+    async ({
+      adminId,
+      eventName,
+      location,
+      date,
+      time,
+      description,
+      image,
+    }) => {
+      const { data } = await api.post("/users", {
+        adminId,
+        eventName,
+        location,
+        date,
+        time,
+        description,
+        image,
+      });
+      setNewEvent(data);
+      enqueueSnackbar("User successfully registered", {
+        variant: "success",
+      });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   const Subscribe = useCallback(
     async ({ eventId }) => {
@@ -33,7 +63,16 @@ export const EventProvider = ({ children }) => {
   );
 
   return (
-    <EventContext.Provider value={{ events, setEvents, eventId, setEventId }}>
+    <EventContext.Provider
+      value={{
+        events,
+        setEvents,
+        eventId,
+        setEventId,
+        registerEvent,
+        newEvent,
+      }}
+    >
       {children}
     </EventContext.Provider>
   );

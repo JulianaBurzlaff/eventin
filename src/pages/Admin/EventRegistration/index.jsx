@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+import { useEvents } from "../../../Hooks/useEvents";
+import { useAuth } from "../../../Hooks/useAuth";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
@@ -20,6 +22,8 @@ import * as S from "./styles";
 
 function EventRegistration() {
   const history = useHistory();
+  const { user } = useAuth();
+  const { registerEvent } = useEvents();
   const [image, setImage] = useState(null);
   const {
     control,
@@ -34,8 +38,22 @@ function EventRegistration() {
     history.push(`/admin/events`);
   };
 
-  const onSubmit = ({ eventName, location, date, time, description }) => {
-    history.push(`/admin/events`);
+  const onSubmit = async ({ eventName, location, date, time, description }) => {
+    try {
+      await registerEvent({
+        adminId: user.id,
+        eventName,
+        location,
+        date,
+        time,
+        description,
+        image,
+      });
+
+      history.push(`/admin/events`);
+    } catch (error) {
+      //
+    }
   };
 
   const getBase64 = useCallback((file) => {
