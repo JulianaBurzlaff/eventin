@@ -28,7 +28,7 @@ export default function EventDescription(props) {
     <Container>
       <img className="eventPic"></img>
       <EventInfor>
-        <h3>{events[eventId-1].name}</h3>
+        <h3>{events[eventId-1].eventName}</h3>
         <ul>
           <li>
             <img src={calendar}></img>

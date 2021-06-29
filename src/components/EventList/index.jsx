@@ -8,15 +8,14 @@ import { useEvents } from "../../Hooks/useEvents";
 export default function EventList(props) {
   const { events } = useEvents();
 
-  
-
   return (
     <>
       {events.map((event) => (
         <EventCard
+          image={event.image}
           key={event.id}
           id={event.id}
-          name={event.name}
+          name={event.eventName}
           date={event.date}
           time={event.time}
           location={event.location}
