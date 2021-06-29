@@ -7,6 +7,13 @@ export function fullnameRequired(value) {
   return undefined;
 }
 
+export async function usernameLoginRequired(value) {
+  if (!value) {
+    return "Username required";
+  }
+  return undefined;
+}
+
 export async function usernameRequired(value) {
   if (!value) {
     return "Username required";

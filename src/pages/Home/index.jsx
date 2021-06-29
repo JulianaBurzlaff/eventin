@@ -7,7 +7,10 @@ import Logo from "../../components/Logo";
 // import Input from "../../components/Input";
 import Button from "../../components/Button";
 import AuthLayout from "../../components/AuthLayout";
-import { usernameRequired, passwordRequired } from "../../services/validations";
+import {
+  usernameLoginRequired,
+  passwordRequired,
+} from "../../services/validations";
 import { Container, ContainerLeft, ContainerRight } from "./styles";
 
 export default function Home() {
@@ -47,7 +50,7 @@ export default function Home() {
           <Controller
             name="username"
             control={control}
-            rules={{ validate: usernameRequired }}
+            rules={{ validate: usernameLoginRequired }}
             render={({ field }) => (
               <TextField
                 error={!!errors.username}
