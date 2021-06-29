@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Container, EventInfor } from "./styles";
@@ -9,13 +9,20 @@ import calendar from "../../assets/calendar.svg";
 import clock from "../../assets/clock.svg";
 import pin from "../../assets/pin.svg";
 
+import { AuthContext } from "../../providers/AuthProvider";
 import { useEvents } from "../../Hooks/useEvents";
 
 export default function EventDescription(props) {
   const { events, eventId } = useEvents();
-
+  const { user } = useContext(AuthContext);
+  const [disabled, setDisabled] = useState();
   const navigate = useHistory();
 
+  useEffect(() => {
+    if (user.events.includes(`${eventId}`)) {
+      setDisabled(true);
+    }
+  }, []);
 
   return (
     <Container>
@@ -38,7 +45,7 @@ export default function EventDescription(props) {
         {events[eventId-1].description}
         </legend>
         <Button onClick = {()=> navigate.push(`/user/events-available`)}>{props.btn1}</Button>
-        <Button>{props.btn2}</Button>
+        <Button disabled={disabled} >{props.btn2}</Button>
       </EventInfor>
     </Container>
   );

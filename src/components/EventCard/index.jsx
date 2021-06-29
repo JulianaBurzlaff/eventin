@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useEvents } from "../../Hooks/useEvents";
+import { useUsers } from "../../Hooks/useUsers";
+import { AuthContext } from "../../providers/AuthProvider";
+
 import { Container, EventInfor } from "./styles";
 
 import Button from "../Button";
@@ -12,15 +15,24 @@ import pin from "../../assets/pin.svg";
 export default function EventCard(props) {
   const navigate = useHistory();
   const { setEventId } = useEvents();
+  const { setUserEvent } = useUsers();
+  const { user } = useContext(AuthContext);
+  const [disabled, setDisabled] = useState();
 
+  useEffect(() => {
+    if (user.events.includes(`${props.id}`)) {
+      setDisabled(true);
+    }
+  }, []);
 
   function navigateTo() {
-    setEventId(props.id)
+    setEventId(props.id);
     navigate.push(`/user/event-detail/${props.name}`);
   }
-  // function handleSubmit(id){
-  //   navigate.push('/user/event-detail')
-  // }
+  function handleSubmit(id) {
+    setUserEvent(id, user.username);
+    setDisabled(true);
+  }
 
   return (
     <Container>
@@ -43,7 +55,14 @@ export default function EventCard(props) {
         </ul>
       </EventInfor>
       <Button onClick={() => navigateTo()}>{props.btn1}</Button>
-      <Button>{props.btn2}</Button>
+      <Button
+        onClick={() => {
+          handleSubmit(props.id);
+        }}
+        disabled={disabled}
+      >
+        {props.btn2}
+      </Button>
     </Container>
   );
 }

@@ -31,6 +31,7 @@ function UserList() {
   useEffect(() => {
     if (user) {
       fetchUsers(user.id);
+      console.log(users)
       // setPages(Math.ceil(users.length / PAGE_LIMIT));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

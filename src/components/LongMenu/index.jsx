@@ -10,11 +10,11 @@ import { useAuth } from "../../Hooks/useAuth";
 const optionsUsers = [
   {
     label: "Events",
-    value: "/events",
+    value: "/user/events-available",
   },
   {
     label: "My events",
-    value: "/events/user",
+    value: "/user/my-events",
   },
   {
     label: "Logout",

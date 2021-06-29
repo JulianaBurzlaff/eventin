@@ -43,6 +43,21 @@ export const UserProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const setUserEvent = useCallback(
+    
+  async (eventId, username ) => {
+      console.log("aa",username, eventId)
+      try {
+        const response = api.put(`/submit/${username}&${eventId}`, { username, eventId });
+        setUsers(response)
+      } catch (err) {
+        return null;
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   return (
     <UserContext.Provider
       value={{
@@ -50,6 +65,7 @@ export const UserProvider = ({ children }) => {
         registerUser,
         fetchUsers,
         users,
+        setUserEvent
       }}
     >
       {children}

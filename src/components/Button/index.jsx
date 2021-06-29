@@ -10,6 +10,7 @@ export default function Button({
   onClick,
   disabled,
 }) {
+
   return (
     <ButtonComponent
       className={className}
