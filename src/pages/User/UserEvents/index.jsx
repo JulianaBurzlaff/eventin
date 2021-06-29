@@ -31,6 +31,7 @@ export default function UserEvents() {
           description={event.description}
           btn1={"Ticket"}
           btn2={"Unsubscribe"}
+          
         ></EventCard>
       ))}
       </Container>

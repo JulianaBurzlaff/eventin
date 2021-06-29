@@ -15,8 +15,13 @@ import createPalette from "@material-ui/core/styles/createPalette";
 
 export default function EventCard(props) {
   const navigate = useHistory();
+<<<<<<< HEAD
   const { setEventId, generateTicket, getTicket } = useEvents();
   const { setUserEvent } = useUsers();
+=======
+  const { setEventId } = useEvents();
+  const { setUserEvent, delUserEvent } = useUsers();
+>>>>>>> 4bcc54164f7979d8b8132910d45d4906dc7748b4
   const { user } = useContext(AuthContext);
   const [disabled, setDisabled] = useState();
   const userId = user.id;
@@ -25,6 +30,10 @@ export default function EventCard(props) {
     if (user.events) {
       if (user.events.includes(`${props.id}`)) {
         setDisabled(true);
+        if (props.btn2 === "Unsubscribe") {
+          setDisabled(false);
+          console.log("Ok")
+        }
       }
     }
   }, []);
@@ -38,10 +47,22 @@ export default function EventCard(props) {
       getTicket({ eventId, userId });
     }
   }
+<<<<<<< HEAD
   function handleSubmit(eventId) {
     setUserEvent(eventId, user.username);
     generateTicket({ eventId, userId });
     setDisabled(true);
+=======
+  function handleSubmit(id) {
+    if (props.btn2 === "Subscribe") {
+      setUserEvent(id, user.username);
+      setDisabled(true);
+      console.log("Ok")
+    } else if (props.btn2 === "Unsubscribe") {
+      delUserEvent(id, user.username)
+      console.log(id, user);
+    }
+>>>>>>> 4bcc54164f7979d8b8132910d45d4906dc7748b4
   }
 
   return (

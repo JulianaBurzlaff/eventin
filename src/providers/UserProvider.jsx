@@ -76,6 +76,23 @@ export const UserProvider = ({ children }) => {
     []
   );
 
+  const delUserEvent = useCallback(
+    async (eventId, username) => {
+      console.log("aa", username, eventId);
+      try {
+        const response = api.put(`/del/${username}&${eventId}`, {
+          username,
+          eventId,
+        });
+        setUsers(response);
+      } catch (err) {
+        return null;
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   return (
     <UserContext.Provider
       value={{
@@ -85,6 +102,7 @@ export const UserProvider = ({ children }) => {
         users,
         setUserEvent,
         deleteUser,
+        delUserEvent,
       }}
     >
       {children}
