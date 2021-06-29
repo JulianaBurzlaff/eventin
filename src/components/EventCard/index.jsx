@@ -15,10 +15,11 @@ import createPalette from "@material-ui/core/styles/createPalette";
 
 export default function EventCard(props) {
   const navigate = useHistory();
-  const { setEventId } = useEvents();
+  const { setEventId, generateTicket, getTicket } = useEvents();
   const { setUserEvent } = useUsers();
   const { user } = useContext(AuthContext);
   const [disabled, setDisabled] = useState();
+  const userId = user.id;
 
   useEffect(() => {
     if (user.events) {
@@ -33,11 +34,13 @@ export default function EventCard(props) {
     if (props.btn1 === "Details") {
       navigate.push(`/user/event-detail/${props.name}`);
     } else if (props.btn1 === "Ticket") {
-      navigate.push("/user/my-ticket");
+      const eventId = props.id;
+      getTicket({ eventId, userId });
     }
   }
-  function handleSubmit(id) {
-    setUserEvent(id, user.username);
+  function handleSubmit(eventId) {
+    setUserEvent(eventId, user.username);
+    generateTicket({ eventId, userId });
     setDisabled(true);
   }
 

@@ -30,6 +30,7 @@ export const Container = styled.div`
   div {
     width: 100%;
     height: 30px;
+    margin-top: 50px;
 
     display: flex;
     justify-content: center;
@@ -39,6 +40,6 @@ export const Container = styled.div`
     width: 300px;
     height: 50px;
 
-    margin: 30px 10px 0 10px;
+    margin: 0 10px 0 10px;
   }
 `;

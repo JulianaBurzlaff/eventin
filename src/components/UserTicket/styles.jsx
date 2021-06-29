@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import ticket from "../../assets/ticket.svg";
+// import ticket from "../../assets/ticket.svg";
 
 export const Ticket = styled.div`
-  background-image: url(${ticket});
-  height: 300px;
-  width: 600px;
+  position: absolute;
+  bottom: 310px;
+  left: 470px;
 `;
 
 export const EventInfo = styled.div``;

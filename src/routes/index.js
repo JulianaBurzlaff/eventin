@@ -37,7 +37,7 @@ export default function Router() {
         />
         <Route path="/attendant" exact component={AttendantHome} />
         <Route
-          path="/attendant/validation"
+          path="/attendant/validation/:token"
           exact
           component={AttendantValidation}
         />
