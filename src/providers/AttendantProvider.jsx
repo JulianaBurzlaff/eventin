@@ -43,12 +43,12 @@ export const AttendantProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const deleteAttendant = useCallback(async (attendantId) => {
+  const deleteAttendant = useCallback(async (userId) => {
     try {
-      await api.delete("/users", { data: { attendantId } });
+      await api.delete("/users", { data: { userId } });
 
       setAttendants((prev) =>
-        prev.filter((attendant) => attendant.id !== attendantId)
+        prev.filter((attendant) => attendant.id !== userId)
       );
       enqueueSnackbar("Attendant successfully deleted", {
         variant: "success",

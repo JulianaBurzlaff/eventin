@@ -6,7 +6,6 @@ import Header from "../../../components/Header";
 import ListDetail from "../../../components/ListDetail";
 import Button from "../../../components/Button";
 import AdminLayout from "../../../components/AdminLayout";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import * as S from "./styles";
 
