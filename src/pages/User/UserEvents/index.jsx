@@ -15,8 +15,6 @@ export default function UserEvents() {
   const event = user.events
   const userEvents = events.filter( e => (event.includes(`${e.id}`))? e : null ) 
 
- 
-
   return (
     <UserLayout>
       <Header type="user" />
