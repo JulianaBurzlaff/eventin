@@ -16,7 +16,7 @@ import createPalette from "@material-ui/core/styles/createPalette";
 export default function EventCard(props) {
   const navigate = useHistory();
   const { setEventId } = useEvents();
-  const { setUserEvent } = useUsers();
+  const { setUserEvent, delUserEvent } = useUsers();
   const { user } = useContext(AuthContext);
   const [disabled, setDisabled] = useState();
 
@@ -24,6 +24,10 @@ export default function EventCard(props) {
     if (user.events) {
       if (user.events.includes(`${props.id}`)) {
         setDisabled(true);
+        if (props.btn2 === "Unsubscribe") {
+          setDisabled(false);
+          console.log("Ok")
+        }
       }
     }
   }, []);
@@ -37,8 +41,14 @@ export default function EventCard(props) {
     }
   }
   function handleSubmit(id) {
-    setUserEvent(id, user.username);
-    setDisabled(true);
+    if (props.btn2 === "Subscribe") {
+      setUserEvent(id, user.username);
+      setDisabled(true);
+      console.log("Ok")
+    } else if (props.btn2 === "Unsubscribe") {
+      delUserEvent(id, user.username)
+      console.log(id, user);
+    }
   }
 
   return (
