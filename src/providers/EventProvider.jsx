@@ -128,7 +128,6 @@ export const EventProvider = ({ children }) => {
 
       document.getElementById("qrcode").innerHTML = qr.createImgTag();
 
-      history.push("/user/my-ticket");
       return ticket;
     } catch (error) {
       return null;
