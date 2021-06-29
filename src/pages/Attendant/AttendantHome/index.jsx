@@ -13,7 +13,7 @@ function AttendantHome() {
         <AttendantHeader />
         <S.Main>
           <CropFreeIcon fontSize="inherit" />
-          <S.Phrase>Click to read the QR Code</S.Phrase>
+          <S.Phrase>Open your camera and read the QR Code</S.Phrase>
         </S.Main>
         <Button width="200px" height="50px" onClick={logout}>
           Logout
