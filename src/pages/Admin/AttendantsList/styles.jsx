@@ -19,25 +19,25 @@ export const ListHeader = styled.div`
 export const List = styled.div``;
 
 export const Fullname = styled.div`
-  width: 22%;
+  width: 26%;
   display: flex;
   justify-content: center;
 `;
 
 export const Username = styled.div`
-  width: 22%;
+  width: 26%;
   display: flex;
   justify-content: center;
 `;
 
-export const Password = styled.div`
-  width: 22%;
+export const Id = styled.div`
+  width: 10%;
   display: flex;
   justify-content: center;
 `;
 
 export const Event = styled.div`
-  width: 22%;
+  width: 26%;
   display: flex;
   justify-content: center;
 `;
