@@ -30,7 +30,11 @@ export default function EventCard(props) {
 
   function navigateTo() {
     setEventId(props.id);
-    navigate.push(`/user/event-detail/${props.name}`);
+    if (props.btn1 === "Details") {
+      navigate.push(`/user/event-detail/${props.name}`);
+    } else if (props.btn1 === "Ticket") {
+      navigate.push("/user/my-ticket");
+    }
   }
   function handleSubmit(id) {
     setUserEvent(id, user.username);
