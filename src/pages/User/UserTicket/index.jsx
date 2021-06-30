@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Header from "../../../components/Header";
 import UserTicket from "../../../components/UserTicket";
 import Button from "../../../components/Button";
@@ -9,6 +9,7 @@ import { Container } from "./styles";
 // Change EventCard to EventList Component
 
 export default function UserEvents() {
+  const navigate = useHistory();
   // useEffect(() => {
   //   var typeNumber = 4;
   //   var errorCorrectionLevel = "L";
@@ -28,7 +29,7 @@ export default function UserEvents() {
         <h4>Please, present it at the event entrance.</h4>
         <UserTicket height={300} width={600} className="ticket"></UserTicket>
         <div>
-          <Button>See other events</Button>
+          <Button onClick={() => navigate.push("my-events")}>See other events</Button>
           <Button>Print ticket</Button>
         </div>
       </Container>
