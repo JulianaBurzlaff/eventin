@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import { api } from "../services/api";
 
@@ -9,6 +9,17 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState();
   const { enqueueSnackbar } = useSnackbar();
   const [userDataTicket, setUserDataTicket] = useState();
+
+  useEffect(async () => {
+    try {
+      const { data } = await api.get("/users");
+
+      setUsers(data);
+     } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const registerUser = useCallback(
     async ({ fullname, username, password, type, adminId }) => {

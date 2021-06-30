@@ -45,11 +45,13 @@ export const EventProvider = ({ children }) => {
     []
   );
 
-  const fetchUserEvents = useCallback(async (userId) => {
+  const fetchUserEvents = useCallback(async (userId, userEvents) => {
+    console.log(userId, userEvents, "BBBBBBBBBBBB")
     try {
-      const { data } = await api.get(`/events/${userId}`);
+      const { data } = await api.get(`/events/${userId}&${userEvents}`);
 
       setUserEvents(data);
+      console.log("aaaaaaaaa",data)
 
       return data;
     } catch (error) {

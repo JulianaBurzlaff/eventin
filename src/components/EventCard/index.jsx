@@ -21,6 +21,8 @@ export default function EventCard(props) {
   const [disabled, setDisabled] = useState();
   const userId = user.id;
 
+  console.log(user)
+
   useEffect(() => {
     if (user.events) {
       if (user.events.includes(`${props.id}`)) {
@@ -31,7 +33,7 @@ export default function EventCard(props) {
         }
       }
     }
-  }, []);
+  }, [user]);
 
   function navigateTo() {
     setEventId(props.id);

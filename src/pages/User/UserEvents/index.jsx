@@ -12,10 +12,12 @@ export default function UserEvents() {
   const { userEvents, fetchUserEvents } = useEvents();
   const { user } = useAuth();
 
+  console.log("aaa",user,"n")
   useEffect(() => {
-    fetchUserEvents(user.id);
+    fetchUserEvents(user.id , user.events);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log("aaa",userEvents,"n")
 
   return (
     <UserLayout>
