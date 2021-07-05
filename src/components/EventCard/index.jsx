@@ -50,10 +50,15 @@ export default function EventCard(props) {
       setUserEvent(id, user.username);
       setDisabled(true);
       generateTicket({ eventId: id, userId: user.id });
+<<<<<<< Updated upstream
       console.log("Ok");
     } else if (props.btn2 === "Unsubscribe") {
       delUserEvent(id, user.username);
       console.log(id, user);
+=======
+    } else if (props.btn2 === "Unsubscribe") {
+      delUserEvent(id, user.username);
+>>>>>>> Stashed changes
     }
   }
 

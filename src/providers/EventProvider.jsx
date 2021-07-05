@@ -148,11 +148,19 @@ export const EventProvider = ({ children }) => {
 
   const getTicketData = useCallback(async ({ token }) => {
     try {
+<<<<<<< Updated upstream
       const { data } = await api.get("/tickets");
 
       const ticket = data.filter((ticket) => ticket.token === token);
       setTicket(ticket);
       return ticket;
+=======
+      const { data } = await api.get(`/ticket?token=${token}`);
+
+      setTicket(data);
+      console.log(data);
+      return data;
+>>>>>>> Stashed changes
     } catch (error) {
       return null;
     }
@@ -172,6 +180,20 @@ export const EventProvider = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+<<<<<<< Updated upstream
+=======
+
+  const updateTicket = useCallback(async (token) => {
+    try {
+      await api.put("/ticket", { token });
+
+      return true;
+    } catch (error) {
+      return null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+>>>>>>> Stashed changes
 
   return (
     <EventContext.Provider
@@ -191,6 +213,10 @@ export const EventProvider = ({ children }) => {
         eventDataTicket,
         getTicketData,
         ticket,
+<<<<<<< Updated upstream
+=======
+        updateTicket,
+>>>>>>> Stashed changes
       }}
     >
       {children}

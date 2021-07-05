@@ -13,7 +13,6 @@ import EventRegistration from "../pages/Admin/EventRegistration";
 import AttendantHome from "../pages/Attendant/AttendantHome";
 import AttendantValidation from "../pages/Attendant/AttendantValidation";
 import AttendantValidated from "../pages/Attendant/AttendantValidated";
-import AttendantRefused from "../pages/Attendant/AttendantRefused";
 
 import EventsAvailable from "../pages/User/EventsAvailable";
 import EventDetail from "../pages/User/EventDetail";
@@ -36,18 +35,21 @@ export default function Router() {
           component={AttendantRegistration}
         />
         <Route path="/attendant" exact component={AttendantHome} />
+
         <Route
+<<<<<<< Updated upstream
           path="/attendant/validation/:token"
-          exact
-          component={AttendantValidation}
-        />
-        <Route
+=======
           path="/attendant/validated"
+>>>>>>> Stashed changes
           exact
           component={AttendantValidated}
         />
-        <Route path="/attendant/refused" exact component={AttendantRefused} />
-
+        <Route
+          path="/attendant/validation"
+          exact
+          component={AttendantValidation}
+        />
         <Route path="/user/events-available" component={EventsAvailable} />
         <Route path="/user/event-detail/:event_name" component={EventDetail} />
         <Route path="/user/my-events" component={UserEvents} />

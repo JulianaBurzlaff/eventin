@@ -89,7 +89,10 @@ export const UserProvider = ({ children }) => {
 
   const delUserEvent = useCallback(
     async (eventId, username) => {
+<<<<<<< Updated upstream
       console.log("aa", username, eventId);
+=======
+>>>>>>> Stashed changes
       try {
         const response = api.put(`/del/${username}&${eventId}`, {
           username,
