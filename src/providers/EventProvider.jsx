@@ -46,12 +46,12 @@ export const EventProvider = ({ children }) => {
   );
 
   const fetchUserEvents = useCallback(async (userId, userEvents) => {
-    console.log(userId, userEvents, "BBBBBBBBBBBB")
+    console.log(userId, userEvents, "BBBBBBBBBBBB");
     try {
       const { data } = await api.get(`/events/${userId}&${userEvents}`);
 
       setUserEvents(data);
-      console.log("aaaaaaaaa",data)
+      console.log("aaaaaaaaa", data);
 
       return data;
     } catch (error) {
@@ -148,19 +148,11 @@ export const EventProvider = ({ children }) => {
 
   const getTicketData = useCallback(async ({ token }) => {
     try {
-<<<<<<< Updated upstream
-      const { data } = await api.get("/tickets");
-
-      const ticket = data.filter((ticket) => ticket.token === token);
-      setTicket(ticket);
-      return ticket;
-=======
       const { data } = await api.get(`/ticket?token=${token}`);
 
       setTicket(data);
       console.log(data);
       return data;
->>>>>>> Stashed changes
     } catch (error) {
       return null;
     }
@@ -180,8 +172,6 @@ export const EventProvider = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-<<<<<<< Updated upstream
-=======
 
   const updateTicket = useCallback(async (token) => {
     try {
@@ -193,7 +183,6 @@ export const EventProvider = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
->>>>>>> Stashed changes
 
   return (
     <EventContext.Provider
@@ -213,10 +202,6 @@ export const EventProvider = ({ children }) => {
         eventDataTicket,
         getTicketData,
         ticket,
-<<<<<<< Updated upstream
-=======
-        updateTicket,
->>>>>>> Stashed changes
       }}
     >
       {children}

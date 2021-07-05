@@ -37,11 +37,7 @@ export default function Router() {
         <Route path="/attendant" exact component={AttendantHome} />
 
         <Route
-<<<<<<< Updated upstream
-          path="/attendant/validation/:token"
-=======
           path="/attendant/validated"
->>>>>>> Stashed changes
           exact
           component={AttendantValidated}
         />

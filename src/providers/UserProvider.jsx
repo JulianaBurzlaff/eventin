@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
       const { data } = await api.get("/users");
 
       setUsers(data);
-     } catch (error) {
+    } catch (error) {
       return null;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,10 +89,6 @@ export const UserProvider = ({ children }) => {
 
   const delUserEvent = useCallback(
     async (eventId, username) => {
-<<<<<<< Updated upstream
-      console.log("aa", username, eventId);
-=======
->>>>>>> Stashed changes
       try {
         const response = api.put(`/del/${username}&${eventId}`, {
           username,
