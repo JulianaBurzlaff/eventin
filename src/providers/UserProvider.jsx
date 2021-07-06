@@ -5,21 +5,8 @@ import { api } from "../services/api";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const [newUser, setNewUser] = useState();
   const [users, setUsers] = useState();
   const { enqueueSnackbar } = useSnackbar();
-  const [userDataTicket, setUserDataTicket] = useState();
-
-  useEffect(async () => {
-    try {
-      const { data } = await api.get("/users");
-
-      setUsers(data);
-    } catch (error) {
-      return null;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const registerUser = useCallback(
     async ({ fullname, username, password, type, adminId }) => {
@@ -30,7 +17,7 @@ export const UserProvider = ({ children }) => {
         type,
         adminId,
       });
-      setNewUser(data);
+      setUsers((prev) => [data, ...prev]);
       enqueueSnackbar("User successfully registered", {
         variant: "success",
       });
@@ -119,15 +106,12 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        newUser,
         registerUser,
         fetchUsers,
         users,
         setUserEvent,
         deleteUser,
         delUserEvent,
-        // getUserDataFromTicket,
-        userDataTicket,
       }}
     >
       {children}
