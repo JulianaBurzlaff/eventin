@@ -1,70 +1,147 @@
-# Getting Started with Create React App
+# <p align = "center"> EVENTIN </p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align = "center">
+<img src="https://img.shields.io/badge/author-julianaburzlaff-4caf50?style=flat-square" />
+<img src="https://img.shields.io/badge/author-luanalessa-4caf50?style=flat-square" />
 
-## Available Scripts
+<img src="https://img.shields.io/github/languages/count/luanalessa/letmeask-nlw?color=4caf50&style=flat-square" />
 
-In the project directory, you can run:
+ <p align = "center"> Application to managing events using QR Code validation . </br> Built with ReactJs using Axios.</p> </br>
 
-### `yarn start`
+<p align = "center"><img src = "https://user-images.githubusercontent.com/72531277/124649381-ca7eab80-de6e-11eb-957a-b438f8fe9b57.jpeg" width = "640"/></p>
+<p align = "center"><img src = "https://user-images.githubusercontent.com/72531277/124649280-a91dbf80-de6e-11eb-8cd2-e9c22004f2e2.jpeg" width = "640"/></p>
+<p align = "center"><img src = "https://user-images.githubusercontent.com/72531277/124648889-2d237780-de6e-11eb-8f1c-c8a2f741e8de.jpeg" width = "640"/></p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# 🚀 Hooks 
+A Hook is a special function that allows you to use states and other React features without writing a class.
 
-### `yarn test`
+## useState
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`useState` is responsable for declaring a state variable. You can pass the initial state and it will return a variable with the current value.
 
-### `yarn build`
+```javascript
+import { useState } from 'react'
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+function Example(){
+  const [state, setState] = useState(0);
+  setState("testing hooks")
+}
+```
+## useEffect
+When you use `useEffect`, you are telling React that your component needs to do something after render. It's important to know that React will always call the function you have passed, after the DOM updates.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This hook accepts 2 arguments:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
+useEffect(callback, [dependencies])
+```
 
-### `yarn eject`
+1. The `callback` function contains a side-effect logic, where useEffect() will execute after the render.
+2. `dependencies` is an optional array of dependencies. In this case, useEffect will execute the callback only if there is any change between renderings.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```javascript
+import { useState, useEffect } from 'react'
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function Counter(){
+  // Setting the initial state of 'counter'
+  const [counter, setCounter] = useState(0)
+  
+  // Creating a function that changes the 'counter' state
+  useEffect(() => {
+    /* The callback will be executed after the page renders. 
+    Then react will compare the counter = [0] (initial state) 
+    with the new one, [1]. 
+    If there's any change, the useEffect() will be executed again. 
+    In this case, we have a loop.*/
+    setCounter( counter + 1)
+  }, [counter])
+ }
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+## useContext
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+React `useContext` hook is a very useful way to pass data throughout the app tree without using props manually.
 
-## Learn More
+```javascript
+import { useState, useEffect, useContext, createContext } from 'react'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const CounterContext = createContext() // creating a component to pass data
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+export function CounterProvider(props){
+  const [counter, setCounter] = useState(0)
+  
+  const increment = () => {
+    setCounter(counter + 1)
+  }
+  
+  const decrement = () => {
+    setCounter(counter - 1)
+  }
+  
+  return (
+    // telling React which data you wanna pass with your CounterContext. 
+    ///It can be a function, an array, etc etc.
+    <CounterContext.Provider value = {{ counter, increment, decrement }}> 
+      {props.children}
+    <CounterContext.Provider />
+  )
+}
+```
 
-### Code Splitting
+```javascript
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+import { CounterContext } from "../../providers/CounterProvider"
 
-### Analyzing the Bundle Size
+export default function PageInputContext(){
+    const {counter, increment, decrement} = useContext(CounterContext)
+    
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
 
-### Making a Progressive Web App
+## useCallback
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This hook can be used to optimize the rendering of your React components. This way, `useCallback` will return a memoized version of the function, that only will be rendered if the value of the dependencies changes.
 
-### Advanced Configuration
+```javascript
+const increment = useCallback(()=>{
+  setCounter(counter + 1)
+}, [counter])
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+const decrement = useCallback(()=>{
+  setCounter(counter - 1)
+}, [counter])
 
-### Deployment
+```
+</br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `yarn build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 🏁 Getting Started 
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), so you need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, in order to test the project.
+
+Then, clone the repository with:
+
+```
+git clone https://github.com/julianaburzlaff/eventin.git
+```
+
+So, in the project directory, you can run:
+
+```
+yarn install
+```
+to install the dependencies,
+
+```
+yarn server
+```
+to start the fake API and:
+
+```
+yarn start
+```
+
+to open the project on [localhost](http://localhost:3000) in your browser.
