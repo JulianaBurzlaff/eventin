@@ -130,9 +130,7 @@ export const EventProvider = ({ children }) => {
       var typeNumber = 4;
       var errorCorrectionLevel = "L";
       var qr = qrcodeGenerator(typeNumber, errorCorrectionLevel);
-      qr.addData(
-        `http://192.168.15.11:3000/attendant/validation?token=${token}`
-      );
+      qr.addData(`http://localhost:3000/attendant/validation?token=${token}`);
       qr.make();
 
       document.getElementById("qrcode").innerHTML = qr.createImgTag();
@@ -200,6 +198,7 @@ export const EventProvider = ({ children }) => {
         eventDataTicket,
         getTicketData,
         ticket,
+        updateTicket,
       }}
     >
       {children}
