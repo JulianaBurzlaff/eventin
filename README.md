@@ -4,7 +4,7 @@
 <img src="https://img.shields.io/badge/author-julianaburzlaff-b606bf?style=flat-square" />
 <img src="https://img.shields.io/badge/author-luanalessa-b606bf?style=flat-square" />
 
-<img src="https://img.shields.io/github/languages/count/luanalessa/letmeask-nlw?color=b606bf&style=flat-square" />
+<img src="https://img.shields.io/github/languages/count/julianaburzlaff/eventin?color=b606bf&style=flat-square" />
 
  <p align = "center"> Application to managing events using QR Code validation . </br> Built with ReactJs using Axios.</p> </br>
 
