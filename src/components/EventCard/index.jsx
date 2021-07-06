@@ -15,15 +15,15 @@ import createPalette from "@material-ui/core/styles/createPalette";
 
 export default function EventCard(props) {
   const navigate = useHistory();
-  const { setEventId, generateTicket, getTicket } = useEvents();
+  const { setEventId, generateTicket, getTicket, fetchEvents, events } =
+    useEvents();
   const { setUserEvent, delUserEvent } = useUsers();
   const { user } = useContext(AuthContext);
   const [disabled, setDisabled] = useState();
   const userId = user.id;
 
-  console.log(user);
-
   useEffect(() => {
+    fetchEvents(user.adminId);
     if (user.events) {
       if (user.events.includes(`${props.id}`)) {
         setDisabled(true);

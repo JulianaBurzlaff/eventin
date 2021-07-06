@@ -72,9 +72,8 @@ export const UserProvider = ({ children }) => {
 
   const setUserEvent = useCallback(
     async (eventId, username) => {
-      console.log("aa", username, eventId);
       try {
-        const response = api.put(`/submit/${username}&${eventId}`, {
+        const response = await api.put(`/submit/${username}&${eventId}`, {
           username,
           eventId,
         });
@@ -90,7 +89,7 @@ export const UserProvider = ({ children }) => {
   const delUserEvent = useCallback(
     async (eventId, username) => {
       try {
-        const response = api.put(`/del/${username}&${eventId}`, {
+        const response = await api.put(`/del/${username}&${eventId}`, {
           username,
           eventId,
         });
@@ -103,19 +102,19 @@ export const UserProvider = ({ children }) => {
     []
   );
 
-  const getUserDataFromTicket = useCallback(async (userId) => {
-    try {
-      const { data } = await api.get("/users");
+  // const getUserDataFromTicket = useCallback(async (userId) => {
+  //   try {
+  //     const { data } = await api.get("/users");
 
-      const user = data.filter((usr) => usr.id === userId);
+  //     const user = data.filter((usr) => usr.id === userId);
 
-      setUserDataTicket(user);
-      return user;
-    } catch (error) {
-      return null;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     setUserDataTicket(user);
+  //     return user;
+  //   } catch (error) {
+  //     return null;
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <UserContext.Provider
@@ -127,7 +126,7 @@ export const UserProvider = ({ children }) => {
         setUserEvent,
         deleteUser,
         delUserEvent,
-        getUserDataFromTicket,
+        // getUserDataFromTicket,
         userDataTicket,
       }}
     >

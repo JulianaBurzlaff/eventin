@@ -9,21 +9,25 @@ import { Container } from "./styles";
 // Change EventCard to EventList Component
 
 export default function UserEvents() {
-  const { userEvents, fetchUserEvents } = useEvents();
+  const { userEvents, fetchUserEvents, events } = useEvents();
   const { user } = useAuth();
 
-  console.log("aaa",user,"n")
   useEffect(() => {
-    fetchUserEvents(user.id , user.events);
+    fetchUserEvents(user.id, user.events);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log("aaa",userEvents,"n")
+  }, [userEvents]);
+
+  const userEventsId = userEvents.map(Number);
+
+  const userSubscribedEvents = events.filter((evt) =>
+    userEventsId.includes(evt.id)
+  );
 
   return (
     <UserLayout>
       <Header type="user" />
       <Container>
-        {userEvents.map((event) => (
+        {userSubscribedEvents.map((event) => (
           <EventCard
             image={event.image}
             key={event.id}

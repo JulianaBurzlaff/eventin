@@ -45,13 +45,11 @@ export const EventProvider = ({ children }) => {
     []
   );
 
-  const fetchUserEvents = useCallback(async (userId, userEvents) => {
-    console.log(userId, userEvents, "BBBBBBBBBBBB");
+  const fetchUserEvents = useCallback(async (userId) => {
     try {
-      const { data } = await api.get(`/events/${userId}&${userEvents}`);
-
-      setUserEvents(data);
-      console.log("aaaaaaaaa", data);
+      const { data } = await api.get(`/users`);
+      const user = data.filter((usr) => usr.id === userId);
+      setUserEvents(user[0].events);
 
       return data;
     } catch (error) {
@@ -159,19 +157,19 @@ export const EventProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getEventDataFromTicket = useCallback(async (eventId) => {
-    try {
-      const { data } = await api.get("/users");
+  // const getEventDataFromTicket = useCallback(async (eventId) => {
+  //   try {
+  //     const { data } = await api.get("/users");
 
-      const event = data.filter((evt) => evt.id === eventId);
+  //     const event = data.filter((evt) => evt.id === eventId);
 
-      setEventDataTicket(event);
-      return event;
-    } catch (error) {
-      return null;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     setEventDataTicket(event);
+  //     return event;
+  //   } catch (error) {
+  //     return null;
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const updateTicket = useCallback(async (token) => {
     try {
@@ -198,7 +196,7 @@ export const EventProvider = ({ children }) => {
         deleteEvent,
         generateTicket,
         getTicket,
-        getEventDataFromTicket,
+        // getEventDataFromTicket,
         eventDataTicket,
         getTicketData,
         ticket,
